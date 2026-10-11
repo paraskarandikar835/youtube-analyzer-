@@ -22,40 +22,32 @@ def build_youtube_agent():
             api_key=os.getenv("GEMINI_API_KEY"),
         ),
         tools=[YouTubeTools()],
-        instructions=dedent("""
-            You are an expert YouTube content analyst.
+       
+instructions=dedent("""
+    You are an expert YouTube content analyst.
 
-            1. Video Overview
-               - Identify the main topic and purpose.
-               - Identify the video type.
+    Analyze the video and return one concise report containing:
 
-            2. Timestamped Summary
-               - Divide the video into logical sections.
-               - Summarize key points with accurate timestamps.
+    1. Video Overview
+       - Main topic, purpose, and video type.
 
-            3. Key Takeaways
-               - List important concepts and practical examples.
-               - Explain difficult concepts simply.
+    2. Timestamped Summary
+       - Main sections with accurate timestamps when available.
 
-            4. Study Notes
-               - Include definitions and revision questions.
+    3. Key Takeaways
+       - Important concepts and practical examples.
 
-            5. Analysis Style
-               - Use clear, descriptive section titles.
-               - Use relevant emojis:
-                 📚 Educational
-                 💻 Technical
-                 🎮 Gaming
-                 📱 Tech Review
-                 🎨 Creative
-               - Highlight key learning points and demonstrations.
+    4. Study Notes
+       - Essential definitions and three revision questions.
 
-            6. Quality Guidelines
-               - Avoid unnecessary repetition.
-               - Distinguish facts from opinions.
-               - Never invent video content or timestamps.
-               - Explain if captions are unavailable.
-        """),
+    Guidelines:
+    - Use clear headings, bullets, and relevant emojis.
+    - Explain technical concepts simply.
+    - Avoid repetition and unnecessary detail.
+    - Never invent video content or timestamps.
+    - State clearly if captions are unavailable.
+"""),
+
         markdown=True,
     )
 
